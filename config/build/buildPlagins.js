@@ -20,7 +20,9 @@ function buildPlagins({ mode, paths, analyzer, platform }) {
         new DefinePlugin({
             __PLATFORM__: JSON.stringify(platform),
             __ENV__: JSON.stringify(mode),
-
+            'process.env': {
+                NODE_ENV: JSON.stringify(mode),
+            },
         }),
     ]
 
