@@ -6,6 +6,7 @@ const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 const path = require("path");
 const CopyPlugin = require("copy-webpack-plugin");
+const Dotenv = require("dotenv-webpack");
 
 function buildPlagins({ mode, paths, analyzer, platform }) {
     const isDev = mode === "development";
@@ -17,13 +18,12 @@ function buildPlagins({ mode, paths, analyzer, platform }) {
             inject: 'body',
             favicon: path.resolve(paths.public, 'skeleton.ico')
         }),
+
+        new Dotenv(),
+
         new DefinePlugin({
             __PLATFORM__: JSON.stringify(platform),
             __ENV__: JSON.stringify(mode),
-            'process.env': {
-                NODE_ENV: JSON.stringify(mode),
-                REACT_APP_API_URL: JSON.stringify(process.env.REACT_APP_API_URL),
-            },
         }),
     ]
 
