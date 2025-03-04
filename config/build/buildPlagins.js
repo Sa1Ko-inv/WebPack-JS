@@ -22,6 +22,7 @@ function buildPlagins({ mode, paths, analyzer, platform }) {
             __ENV__: JSON.stringify(mode),
             'process.env': {
                 NODE_ENV: JSON.stringify(mode),
+                REACT_APP_API_URL: JSON.stringify(process.env.REACT_APP_API_URL),
             },
         }),
     ]
